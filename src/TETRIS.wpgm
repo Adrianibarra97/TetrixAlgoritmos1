@@ -1,0 +1,39 @@
+import wollok.game.*
+import color.*
+import bloque.*
+import forma.*
+import extras.*
+import manipuladorDeFormas.*
+
+program TETRIS {
+	//----Configuracion del juego TETRIS-----------
+	game.width(10)
+	game.height(20)
+	game.boardGround("tetris_background.jpg")
+	
+	//----Configuracion de la musica---------------
+	configuracion.configurarMusica("tetris_theme.mp3")
+	
+	//Ejemplo con la creacion de forma O inicial
+	var t1 = new FormaO()
+	t1.aparecer()
+	configuracion.configurarTeclasPara(manipuladorDeFormas)
+	manipuladorDeFormas.forma(t1)
+	
+	game.onTick(1000, "CLOCK_PRINCIPAL", {
+		manipuladorDeFormas.bajar()
+	})
+	
+	//Control de pieza y juego
+	game.onTick(50, "CLOCK_CONTROL", {
+		//Nuevas formas al estancar la actual
+		if(t1.estaEstancado()){
+			t1 = new FormaO()
+			manipuladorDeFormas.forma(t1)
+			t1.aparecer()
+		}
+	})
+	
+	//Comenzar el juego
+	game.start()
+}

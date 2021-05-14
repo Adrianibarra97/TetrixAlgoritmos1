@@ -1,0 +1,15 @@
+import wollok.game.*
+import color.*
+import bloque.*
+import extras.*
+import forma.*
+
+describe "Test de la forma en general"{
+	const forma = new Forma([new Bloque(position = game.at(5,5), color = rojo),	//Pieza Central
+							 new Bloque(position = game.at(4,5)),
+							 new Bloque(position = game.at(6,5))])
+	
+	test ""{
+		
+	}	
+}

@@ -1,0 +1,42 @@
+import wollok.game.*
+import color.*
+import extras.*
+import bloque.*
+
+describe "Test de los bloques"{
+	const bloque = new Bloque(color = amarillo)
+	
+	test "El bloque creado con el color amarillo debe contener la imagen \"yellow_block.png\""{
+		assert.equals("yellow_block.png", bloque.image())
+	}
+	
+	test "La posicion por default al crearse es en el punto (4,19)"{
+		assert.equals(game.at(4,19), bloque.position())
+	}
+	
+	test "Se baja una posicion el bloque"{
+		bloque.bajar()
+		assert.equals(game.at(4,18), bloque.position())
+	}
+	
+	test "Se sube una posicion el bloque"{
+		bloque.subir()
+		assert.equals(game.at(4,20), bloque.position())
+	}
+	
+	test "Se mueve a la derecha una posicion el bloque"{
+		bloque.irDerecha()
+		assert.equals(game.at(5,19), bloque.position())
+	}
+	
+	test "Se mueve a la iziquiera una posicion el bloque"{
+		bloque.irIzquierda()
+		assert.equals(game.at(3,19), bloque.position())
+	}
+	
+	test "Se mueve el bloque 4 posiciones hacia abajo y 2 hacia la derecha"{
+		bloque.mover(abajo,4)
+		bloque.mover(derecha,2)
+		assert.equals(game.at(6,15), bloque.position())
+	}
+}

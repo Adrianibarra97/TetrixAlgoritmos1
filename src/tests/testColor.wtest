@@ -1,0 +1,31 @@
+import color.*
+
+describe "Test de los colores"{
+	test "El color verde devuelve el archivo de imagen \"green_block.png\""{
+		assert.equals("green_block.png", verde.imagen())
+	}
+	
+	test "El color azul devuelve el archivo de imagen \"green_block.png\""{
+		assert.equals("blue_block.png", azul.imagen())
+	}
+	
+	test "El color celeste devuelve el archivo de imagen \"green_block.png\""{
+		assert.equals("lightBlue_block.png", celeste.imagen())
+	}
+	
+	test "El color naranja devuelve el archivo de imagen \"green_block.png\""{
+		assert.equals("orange_block.png", naranja.imagen())
+	}
+	
+	test "El color violeta devuelve el archivo de imagen \"green_block.png\""{
+		assert.equals("purple_block.png", violeta.imagen())
+	}
+	
+	test "El color rojo devuelve el archivo de imagen \"green_block.png\""{
+		assert.equals("red_block.png", rojo.imagen())
+	}
+	
+	test "El color amarillo devuelve el archivo de imagen \"green_block.png\""{
+		assert.equals("yellow_block.png", amarillo.imagen())
+	}
+}
