@@ -27,26 +27,34 @@ Los bloques pueden crearse por separado en cualquier posicion de la pantalla y c
 ### Tetrominos
 Se le llama [**Tetromino**](https://tetris.fandom.com/wiki/Tetromino) a cada una de las formas del juego que caen. Cada una de ellas tiene asignado un color específico y se las suele llamar con sus equivalentes en letras del abecedario.
 
-<p align="center"> <img  src="/img/Tetromino_image.png"/> </p>
+<p align="center"> <img src="/img/Tetromino_image.png"/> </p>
 
 #### [**Forma I**](https://tetris.fandom.com/wiki/Tetromino#I)
 El color de esta forma siempre será el celeste y se la llama I por su forma de palo:<br/>
-<p align="center"> <img  src="/img/TetrominoI.png"/> </p>
+<p align="center"> 
+	<img src="/img/TetrominoI.png"/> 
+</p>
+
 #### [**Forma J**](https://tetris.fandom.com/wiki/Tetromino#J)
 El color de esta forma siempre será el azul y se la llama J por su forma:<br/><br/>
 <p align="center"> <img  src="/img/TetrominoJ.png"/> </p>
+
 #### [**Forma L**](https://tetris.fandom.com/wiki/Tetromino#L)
 El color de esta forma siempre será el naranja y se la llama L por su forma:<br/><br/>
 <p align="center"> <img  src="/img/TetrominoL.png"/> </p>
+
 #### [**Forma O**](https://tetris.fandom.com/wiki/Tetromino#O)
 El color de esta forma siempre será el amarillo y se la llama O ya que el cuadrado es la forma más parecida a una O alfabética:<br/>
 <p align="center"> <img  src="/img/TetrominoO.png"/> </p>
+
 #### [**Forma S**](https://tetris.fandom.com/wiki/Tetromino#S)
 El color de esta forma siempre será el verde y se la llama S por su forma:<br/><br/>
 <p align="center"> <img  src="/img/TetrominoS.png"/> </p>
+
 #### [**Forma T**](https://tetris.fandom.com/wiki/Tetromino#T)
 El color de esta forma siempre será el verde y se la llama T por su forma:<br/><br/>
 <p align="center"> <img  src="/img/TetrominoT.png"/> </p>
+
 #### [**Forma Z**](https://tetris.fandom.com/wiki/Tetromino#Z)
 El color de esta forma siempre será el verde y se la llama Z por su forma:<br/><br/>
 <p align="center"> <img  src="/img/TetrominoZ.png"/> </p>
@@ -56,7 +64,6 @@ Por cómo trabaja Wollok en el asignado de teclas no podemos asignarle unas tecl
 Lo llamamos de esa manera porque nos basamos en otro juego de Wollok que por suerte encontramos llamado [*Cooking Ralf*](https://youtu.be/PJ72TtMsqxE), en el que un cocinero puede tomar la comida y dejarla en otra parte del mapa, lo que nos inspiró a realiza nuestro propio cocinero invisible que lleve a nuestros Tetrominos por el mapa.
 
 ### Controles
-<p align="center">
 Tecla | Funcion
 ------------ | -------------
 Flecha Derecha | Mover hacia la derecha
@@ -65,7 +72,6 @@ Flecha Arriba | Rotar hacia la derecha
 Z | Rotar hacia la izquierda
 Flecha Abajo | Caer suavemente
 Espacio | Dejar caer
-</p>
 
 ## Division y organización de Tareas
 Para la división y organización de tareas utilizamos un software en una página web llamada [*Jira*](https://tetris.fandom.com/wiki/Tetromino), en la cuál manipulamos una hoja de ruta y backlogs de la siguiente manera:
