@@ -1,4 +1,4 @@
-# [**Tetris**](https://tetris.fandom.com/wiki/Tetris_Guideline) Wollog Game. By **_GRUPONG_**.
+# [**Tetris**](https://tetris.fandom.com/wiki/Tetris_Guideline) Wollok Game. By **_GRUPONG_**.
 > *The famous Tetris game programmed with Wollok Game.*<br/>
 > El famoso juego de Tetris programado con Wollok Game.
 
