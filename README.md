@@ -52,11 +52,11 @@ El color de esta forma siempre será el verde y se la llama S por su forma:<br/>
 <p align="center"> <img  src="/img/TetrominoS.png"/> </p>
 
 #### [**Forma T**](https://tetris.fandom.com/wiki/Tetromino#T)
-El color de esta forma siempre será el verde y se la llama T por su forma:<br/><br/>
+El color de esta forma siempre será el violeta y se la llama T por su forma:<br/><br/>
 <p align="center"> <img  src="/img/TetrominoT.png"/> </p>
 
 #### [**Forma Z**](https://tetris.fandom.com/wiki/Tetromino#Z)
-El color de esta forma siempre será el verde y se la llama Z por su forma:<br/><br/>
+El color de esta forma siempre será el rojo y se la llama Z por su forma:<br/><br/>
 <p align="center"> <img  src="/img/TetrominoZ.png"/> </p>
 
 ### manipuladorDeForma
