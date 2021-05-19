@@ -132,107 +132,24 @@ class FormaI inherits Forma{/* Forma I */}
 class FormaJ inherits Forma{
 	var rotacion = "inicial"
 	constructor(){
-		bloques = [ new Bloque(position = game.at(4,20)),
-					new Bloque(position = game.at(5,20)),
-					new Bloque(position = game.at(3,20)),
-					new Bloque(position = game.at(3,21))]
+		bloques = [ new Bloque(position = game.at(3,20)),
+					new Bloque(position = game.at(4,20)),
+					new Bloque(position = game.at(2,20)),
+					new Bloque(position = game.at(2,21))]
 		
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 		position = bloques.first().position()
 	}
 	
-	override method rotar(_direccion){
-		if (_direccion.equals(derecha)){
-			if (rotacion == "inicial"){
-				bloques.get(1).bajar()
-				bloques.get(1).irIzquierda()
-				bloques.get(3).irDerecha()
-				bloques.get(3).irDerecha()
-				bloques.get(2).subir()
-				bloques.get(2).irDerecha()
-				rotacion = "pos1"
-			}else if (rotacion == "pos1"){
-				if (self.colisionaConPared(izquierda)){
-					bloques.forEach{_bloque => _bloque.irDerecha()}
-				}
-				bloques.get(1).subir()
-				bloques.get(1).irIzquierda()
-				bloques.get(3).bajar()
-				bloques.get(3).bajar()
-				bloques.get(2).bajar()
-				bloques.get(2).irDerecha()
-				rotacion = "pos2"
-			}else if (rotacion == "pos2"){
-				bloques.get(1).subir()
-				bloques.get(1).irDerecha()
-				bloques.get(2).bajar()
-				bloques.get(2).irIzquierda()
-				bloques.get(3).irIzquierda()
-				bloques.get(3).irIzquierda()
-				rotacion = "pos3"
-			}else if (rotacion == "pos3"){
-				if (self.colisionaConPared(derecha)){
-					bloques.forEach{_bloque => _bloque.irIzquierda()}
-				}
-				bloques.get(1).bajar()
-				bloques.get(1).irDerecha()
-				bloques.get(2).subir()
-				bloques.get(2).irIzquierda()
-				bloques.get(3).subir()
-				bloques.get(3).subir()
-				rotacion = "inicial"
-			}
-		}else if (_direccion.equals(izquierda)){
-			if (rotacion == "inicial"){
-				bloques.get(3).bajar()
-				bloques.get(3).bajar()
-				bloques.get(2).bajar()
-				bloques.get(2).irDerecha()
-				bloques.get(1).subir()
-				bloques.get(1).irIzquierda()
-				rotacion = "pos3"
-			}else if (rotacion == "pos3"){
-				if (self.colisionaConPared(derecha)){
-					bloques.forEach{_bloque => _bloque.irIzquierda()}
-				}
-				bloques.get(3).irDerecha()
-				bloques.get(3).irDerecha()
-				bloques.get(2).subir()
-				bloques.get(2).irDerecha()
-				bloques.get(1).bajar()
-				bloques.get(1).irIzquierda()
-				rotacion = "pos2"
-			}else if (rotacion == "pos2"){
-				bloques.get(3).subir()
-				bloques.get(3).subir()
-				bloques.get(2).subir()
-				bloques.get(2).irIzquierda()
-				bloques.get(1).bajar()
-				bloques.get(1).irDerecha()
-				rotacion = "pos1"
-			}else if (rotacion == "pos1"){
-				if (self.colisionaConPared(izquierda)){
-					bloques.forEach{_bloque => _bloque.irDerecha()}
-				}
-				bloques.get(3).irIzquierda()
-				bloques.get(3).irIzquierda()
-				bloques.get(2).bajar()
-				bloques.get(2).irIzquierda()
-				bloques.get(1).subir()
-				bloques.get(1).irDerecha()
-				rotacion = "inicial"
-			}
-		}
-	}
 }
 
 class FormaL inherits Forma{
 	var rotacion = "inicial"
 	constructor(){
-		bloques = [ new Bloque(position = game.at(4,20)),
-					new Bloque(position = game.at(3,20)),
-					new Bloque(position = game.at(5,20)),
-					new Bloque(position = game.at(5,21))]
+		bloques = [ new Bloque(position = game.at(3,20)),
+					new Bloque(position = game.at(2,20)),
+					new Bloque(position = game.at(4,20)),
+					new Bloque(position = game.at(4,21))]
 		
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 		position = bloques.first().position()
@@ -240,89 +157,6 @@ class FormaL inherits Forma{
 	
 	override method color() = naranja
 	
-	override method rotar(_direccion){
-		if (_direccion.equals(derecha)){
-			if (rotacion == "inicial"){
-				bloques.get(1).subir()
-				bloques.get(1).irDerecha()
-				bloques.get(2).bajar()
-				bloques.get(2).irIzquierda()
-				bloques.get(3).bajar()
-				bloques.get(3).bajar()
-				rotacion = "pos1"
-			}else if (rotacion == "pos1"){
-				if (self.colisionaConPared(izquierda)){
-					bloques.forEach{_bloque => _bloque.irDerecha()}
-				}
-				bloques.get(1).bajar()
-				bloques.get(1).irDerecha()
-				bloques.get(2).subir()
-				bloques.get(2).irIzquierda()
-				bloques.get(3).irIzquierda()
-				bloques.get(3).irIzquierda()
-				rotacion = "pos2"
-			}else if (rotacion == "pos2"){
-				bloques.get(1).bajar()
-				bloques.get(1).irIzquierda()
-				bloques.get(2).subir()
-				bloques.get(2).irDerecha()
-				bloques.get(3).subir()
-				bloques.get(3).subir()
-				rotacion = "pos3"
-			}else if (rotacion == "pos3"){
-				if (self.colisionaConPared(derecha)){
-					bloques.forEach{_bloque => _bloque.irIzquierda()}
-				}
-				bloques.get(1).subir()
-				bloques.get(1).irIzquierda()
-				bloques.get(2).bajar()
-				bloques.get(2).irDerecha()
-				bloques.get(3).irDerecha()
-				bloques.get(3).irDerecha()
-				rotacion = "inicial"
-			}
-		}else if (_direccion.equals(izquierda)){
-			if (rotacion == "inicial"){
-				bloques.get(1).bajar()
-				bloques.get(1).irDerecha()
-				bloques.get(2).subir()
-				bloques.get(2).irIzquierda()
-				bloques.get(3).irIzquierda()
-				bloques.get(3).irIzquierda()
-				rotacion = "pos3"
-			}else if (rotacion == "pos3"){
-				if (self.colisionaConPared(derecha)){
-					bloques.forEach{_bloque => _bloque.irIzquierda()}
-				}
-				bloques.get(1).subir()
-				bloques.get(1).irDerecha()
-				bloques.get(2).bajar()
-				bloques.get(2).irIzquierda()
-				bloques.get(3).bajar()
-				bloques.get(3).bajar()
-				rotacion = "pos2"
-			}else if (rotacion == "pos2"){
-				bloques.get(1).subir()
-				bloques.get(1).irIzquierda()
-				bloques.get(2).bajar()
-				bloques.get(2).irDerecha()
-				bloques.get(3).irDerecha()
-				bloques.get(3).irDerecha()
-				rotacion = "pos1"
-			}else if (rotacion == "pos1"){
-				if (self.colisionaConPared(izquierda)){
-					bloques.forEach{_bloque => _bloque.irDerecha()}
-				}
-				bloques.get(1).bajar()
-				bloques.get(1).irIzquierda()
-				bloques.get(2).subir()
-				bloques.get(2).irDerecha()
-				bloques.get(3).subir()
-				bloques.get(3).subir()
-				rotacion = "inicial"
-			}
-		}
-	}
 }
 
 /**
