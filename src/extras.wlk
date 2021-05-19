@@ -7,11 +7,13 @@ object derecha{
 	const property alLado = 1
 	method mover(_objeto){ _objeto.position(_objeto.position().right(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().right(_cant)) }
+	method rotar(_objeto){ /*Programar */}
 }
 object izquierda{
 	const property alLado = -1
 	method mover(_objeto){ _objeto.position(_objeto.position().left(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().left(_cant)) }
+	method rotar(_objeto){ /*Programar */}
 }
 object arriba{
 	method mover(_objeto){ _objeto.position(_objeto.position().up(1)) }
@@ -44,7 +46,7 @@ object configuracion{
 		keyboard.down().onPressDo	{_manipulador.bajar()			}		//Down Arrow
 		keyboard.right().onPressDo	{_manipulador.moverDerecha()	}		//Right Arrow
 		keyboard.left().onPressDo	{_manipulador.moverIzquierda()}		//Left Arrow
-		//keyboard.space().onPressDo	{_manipulador.caer()			}		//Space
+		keyboard.space().onPressDo	{_manipulador.caer()			}		//Space
 		keyboard.z().onPressDo		{_manipulador.rotar(izquierda)}		//z
 	}
 	
@@ -60,7 +62,7 @@ object configuracion{
 	method configurarMusica(_music){
 		const music = game.sound(_music)
 		music.shouldLoop(true)
-		music.volume(0.2)
+		music.volume(0.5)
 		game.onTick(100, "MUSICA", {
 			if(not music.played())
 				music.play()

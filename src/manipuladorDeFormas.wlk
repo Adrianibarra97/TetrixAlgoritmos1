@@ -40,6 +40,8 @@ object manipuladorDeFormas {
 	
 	method rotar(_lado){ forma.rotar(_lado) }
 	
+	method caer(){ forma.caer() }
+	
 	/**
 	 *	Update the Tetromino position based on manipuladorDeForma position
 	 */

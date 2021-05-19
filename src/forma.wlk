@@ -18,11 +18,8 @@ class Forma {
 	/**
 	 *	Forma class Constructor. 
 	 */
-	constructor(_bloques){
-		bloques = _bloques
-		_bloques.forEach{_bloque => _bloque.color(self.color())}
-		position = _bloques.first().position()
-	}
+	 
+	constructor(){}
 	
 	/**
 	 *	Specify the Tetromino's color.
@@ -37,7 +34,14 @@ class Forma {
 	/**
 	 *	Rotate the tetromino to the right or left.
 	 */
-	method rotar(_direction){/*Metodo para rotar la pieza*/}
+	method rotar(_direction){/*Metodo para rotar la pieza*/
+		_direction.rotar(self)
+	}
+	
+	/**
+	 *	Return if the Tetromino can rotate to the right or left.
+	 */
+	method puedeRotar(_direction) = true		//PROGRAMARLO
 	
 	/**
 	 *	Move to the right the tetromino if it can.
@@ -121,60 +125,34 @@ class Forma {
 	/**
 	 *	Create the image and appear in the specified position for that Tetromino.
 	 */
-	method aparecer(){ bloques.forEach{_bloque => game.addVisual(_bloque)} }
+	method aparecer(){ 
+		self.crearForma()
+		bloques.forEach{_bloque => game.addVisual(_bloque)}
+	}
 	
-	
+	method crearForma(){}
 }
 
 //------Different Tetrominos---------------
 class FormaI inherits Forma{/* Forma I */}
-
-class FormaJ inherits Forma{
-	var rotacion = "inicial"
-	constructor(){
-		bloques = [ new Bloque(position = game.at(3,20)),
-					new Bloque(position = game.at(4,20)),
-					new Bloque(position = game.at(2,20)),
-					new Bloque(position = game.at(2,21))]
-		
-		bloques.forEach{_bloque => _bloque.color(self.color())}
-		position = bloques.first().position()
-	}
-	
-}
-
-class FormaL inherits Forma{
-	var rotacion = "inicial"
-	constructor(){
-		bloques = [ new Bloque(position = game.at(3,20)),
-					new Bloque(position = game.at(2,20)),
-					new Bloque(position = game.at(4,20)),
-					new Bloque(position = game.at(4,21))]
-		
-		bloques.forEach{_bloque => _bloque.color(self.color())}
-		position = bloques.first().position()
-	}
-	
-	override method color() = naranja
-	
-}
+class FormaJ inherits Forma{/* Forma J */}
+class FormaL inherits Forma{/* Forma L */}
 
 /**
  * FormaO Class.
  * square Tetromino, yellow.
  */
 class FormaO inherits Forma{
-	constructor(){
+	override method color() = amarillo
+	
+	override method crearForma(){
 		bloques = [	new Bloque(position = game.at(4,20)),
 				  	new Bloque(position = game.at(5,20)),
 				  	new Bloque(position = game.at(4,19)),
 				  	new Bloque(position = game.at(5,19))]
-		
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 		position = bloques.first().position()
 	}
-	
-	override method color() = amarillo
 }
 
 class FormaS inherits Forma{/* Forma S */}

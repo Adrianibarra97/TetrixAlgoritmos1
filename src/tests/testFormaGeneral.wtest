@@ -4,6 +4,7 @@ import bloque.*
 import extras.*
 import forma.*
 
+/*
 describe "Test de la forma en general"{
 	const forma = new Forma([new Bloque(position = game.at(5,5), color = rojo),	//Pieza Central
 							 new Bloque(position = game.at(4,5)),
@@ -13,3 +14,4 @@ describe "Test de la forma en general"{
 		
 	}	
 }
+*/
