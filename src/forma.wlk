@@ -135,8 +135,28 @@ class Forma {
 
 //------Different Tetrominos---------------
 class FormaI inherits Forma{/* Forma I */}
-class FormaJ inherits Forma{/* Forma J */}
-class FormaL inherits Forma{/* Forma L */}
+class FormaJ inherits Forma{
+	override method crearForma(){
+		bloques = [	new Bloque(position = game.at(4,20)),
+				  	new Bloque(position = game.at(3,20)),
+				  	new Bloque(position = game.at(2,20)),
+				  	new Bloque(position = game.at(2,21))]
+		bloques.forEach{_bloque => _bloque.color(self.color())}
+		position = bloques.first().position()
+	}
+}
+class FormaL inherits Forma{
+	override method color() = naranja
+	
+	override method crearForma(){
+		bloques = [	new Bloque(position = game.at(4,20)),
+				  	new Bloque(position = game.at(4,21)),
+				  	new Bloque(position = game.at(3,20)),
+				  	new Bloque(position = game.at(2,20))]
+		bloques.forEach{_bloque => _bloque.color(self.color())}
+		position = bloques.first().position()
+	}
+}
 
 /**
  * FormaO Class.
