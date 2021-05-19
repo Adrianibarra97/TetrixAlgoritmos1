@@ -12,7 +12,6 @@ class Forma {
 	 *	Attributtes for manipulating the shape or Tetromino.
 	 */
 	var property bloques		//El primer bloque en la lista sera el central de la figura
-	var property position		//La posicion inicial es la del bloque central
 	var estancado = false
 	
 	/**
@@ -142,7 +141,6 @@ class FormaJ inherits Forma{
 				  	new Bloque(position = game.at(2,20)),
 				  	new Bloque(position = game.at(2,21))]
 		bloques.forEach{_bloque => _bloque.color(self.color())}
-		position = bloques.first().position()//
 	}
 }
 class FormaL inherits Forma{
@@ -154,7 +152,6 @@ class FormaL inherits Forma{
 				  	new Bloque(position = game.at(3,20)),
 				  	new Bloque(position = game.at(2,20))]
 		bloques.forEach{_bloque => _bloque.color(self.color())}
-		position = bloques.first().position()
 	}
 }
 
@@ -171,7 +168,6 @@ class FormaO inherits Forma{
 				  	new Bloque(position = game.at(4,19)),
 				  	new Bloque(position = game.at(5,19))]
 		bloques.forEach{_bloque => _bloque.color(self.color())}
-		position = bloques.first().position()
 	}
 }
 
