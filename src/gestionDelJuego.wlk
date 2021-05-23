@@ -46,17 +46,17 @@ object gestionDelJuego {
 	method bajarObjetosAPartir(valor_inicial) {
 		var linea = self.bloquesEnLinea(valor_inicial)
 		
-		if(linea.size() == 0) {
+		if(linea.size() == 0)
 			 return 0
-		}
+		
 		
 		linea.forEach({bloque => 
-	 		if(not ((manipuladorDeFormas.forma()).bloques()).contains(bloque)) {
+	 		//if(not manipuladorDeFormas.forma().bloques().contains(bloque)) {
 	 			bloque.bajar()
-	 		}
+	 		//}
 	 	})
-	 	
 	 	return self.bajarObjetosAPartir(valor_inicial + 1)
+	 	
 	}
  
 	 
@@ -69,9 +69,6 @@ object gestionDelJuego {
 	} 
 	 
 	method resetear() {
-	    game.removeTickEvent("CLOCK_PRINCIPAL")
-	 	game.removeTickEvent("CLOCK_CONTROL")
-	 	
 	 	game.schedule(1000, {
 	 	   	self.limpiarPantalla()
 	 		game.addVisual(gameOver)
@@ -79,7 +76,7 @@ object gestionDelJuego {
 	 	
 	 	game.schedule(5000, {
 	 		self.limpiarPantalla()
-	 	})	
+	 	})
 	}
 	 
 	method BorrarLinea(linea) {

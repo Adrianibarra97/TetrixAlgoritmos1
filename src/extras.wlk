@@ -10,7 +10,7 @@ object derecha{
 	method rotar(_objeto){
 		(_objeto.bloques()).forEach({
 			Elemento =>
-			var posPrimerBloque = _objeto.posicionActual()
+			var posPrimerBloque = _objeto.bloqueCentral().position()
 			var posBloque = Elemento.position()
 			
 			var desplazamiento = game.at((posPrimerBloque.x() - posBloque.x()), (posPrimerBloque.y() - posBloque.y()))
@@ -27,7 +27,7 @@ object izquierda{
 	method rotar(_objeto){ 
 		(_objeto.bloques()).forEach({
 			Elemento =>
-			var posPrimerBloque = _objeto.posicionActual()
+			var posPrimerBloque = _objeto.bloqueCentral().position()
 			var posBloque = Elemento.position()
 			
 			var desplazamiento = game.at((posBloque.x() - posPrimerBloque.x()), (posBloque.y() - posPrimerBloque.y()))
@@ -85,7 +85,7 @@ object configuracion{
 	method configurarMusica(_music){
 		const music = game.sound(_music)
 		music.shouldLoop(true)
-		music.volume(0.5)
+		music.volume(0)
 		game.onTick(100, "MUSICA", {
 			if(not music.played())
 				music.play()

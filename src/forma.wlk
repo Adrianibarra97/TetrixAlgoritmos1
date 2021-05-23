@@ -47,16 +47,15 @@ class Forma {
 			bloque => _direction.mover(bloque, -1)
 		})
 		return self.rotar(_direction)
-		
 	}
 	/**
 	 *	Return if the Tetromino can rotate to the right or left.
 	 */
 	
 	method puedeRotar(_direction) {
-		return self.puedeCambiarRotacion(_direction) and 
-			   not self.colisionaConPared(_direction) and 
-			   not self.colisionaConPiso()
+		return self.puedeCambiarRotacion(_direction)// and 
+			   //not self.colisionaConPared(_direction) and 
+			   //not self.colisionaConPiso()
 	}
 	
 	

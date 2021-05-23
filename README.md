@@ -5,10 +5,10 @@
 ## Integrantes del grupo:
 *(El orden de los mismos se lo dio una [*web randomizadora de listas*](https://www.random.org/lists/) para no dar prioridad a nadie)*
 * Mateo Pastorini
-* Ezequiel Oyola
+* Ezequiel Agustin Oyola
 * Nicolás Matías Villamonte
-* Ezequiel Iozzia
-* Adrían Ibarra
+* Ezequiel David Iozzia
+* Adrían Joel Ibarra Bilbao
 
 ## Datos sobre el juego
 ### Dimensiones
