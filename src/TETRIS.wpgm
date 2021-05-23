@@ -4,6 +4,7 @@ import bloque.*
 import forma.*
 import extras.*
 import manipuladorDeFormas.*
+import gestionDelJuego.*
 
 program TETRIS {
 	//----Configuracion del juego TETRIS-----------
@@ -12,7 +13,10 @@ program TETRIS {
 	game.boardGround("tetris_background.jpg")
 	
 	//----Configuracion de la musica---------------
-	configuracion.configurarMusica("tetris_theme.mp3")
+	configuracion.configurarMusica()
+	
+	// PRUEBA TEMPORAL!!!!
+	
 	
 	//Ejemplo con la creacion de forma O inicial
 	var t1 = new FormaO()
@@ -30,7 +34,30 @@ program TETRIS {
 		if(t1.estaEstancado()){
 			t1 = new FormaO()
 			manipuladorDeFormas.forma(t1)
+			//Elimino las lineas llenas y bajo la parte de arriba 
+			gestionDelJuego.puntosDelJuego(0)
 			t1.aparecer()
+		}
+	})
+	
+	game.onTick(900, "CLOCK_RESET", {
+		// Verifico si perdio, en ese caso se reinicia el juego
+		if(gestionDelJuego.yaPerdio()) {
+			gestionDelJuego.resetear()
+			
+			game.onTick(1000, "CLOCK_PRINCIPAL", {
+				manipuladorDeFormas.bajar()
+			})
+				
+			//Control de pieza y juego
+			game.onTick(50, "CLOCK_CONTROL", {
+				//Nuevas formas al estancar la actual
+				if(t1.estaEstancado()){
+					t1 = new FormaO()
+					manipuladorDeFormas.forma(t1)
+					t1.aparecer()
+				}
+			})
 		}
 	})
 	
