@@ -7,14 +7,37 @@ object derecha{
 	const property alLado = 1
 	method mover(_objeto){ _objeto.position(_objeto.position().right(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().right(_cant)) }
-	method rotar(_objeto){ /*Programar */}
+	method rotar(_objeto){
+		(_objeto.bloques()).forEach({
+			Elemento =>
+			var posPrimerBloque = _objeto.posicionActual()
+			var posBloque = Elemento.position()
+			
+			var desplazamiento = game.at((posPrimerBloque.x() - posBloque.x()), (posPrimerBloque.y() - posBloque.y()))
+			var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))
+			Elemento.position(posFinal)	
+			})
+	
+	}
 }
 object izquierda{
 	const property alLado = -1
 	method mover(_objeto){ _objeto.position(_objeto.position().left(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().left(_cant)) }
-	method rotar(_objeto){ /*Programar */}
+	method rotar(_objeto){ 
+		(_objeto.bloques()).forEach({
+			Elemento =>
+			var posPrimerBloque = _objeto.posicionActual()
+			var posBloque = Elemento.position()
+			
+			var desplazamiento = game.at((posBloque.x() - posPrimerBloque.x()), (posBloque.y() - posPrimerBloque.y()))
+			var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))
+			Elemento.position(posFinal)	
+			})
+	
+	}
 }
+
 object arriba{
 	method mover(_objeto){ _objeto.position(_objeto.position().up(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().up(_cant)) }
