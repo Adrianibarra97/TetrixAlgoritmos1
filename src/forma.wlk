@@ -262,7 +262,15 @@ class FormaO inherits Forma{
 }
 
 class FormaS inherits Forma{
-	/* Forma S */
+	override method color() = verde
+
+	override method crearForma(){
+		bloques = [	new Bloque(position = game.at(4,20)),
+				  	new Bloque(position = game.at(3,20)),
+				  	new Bloque(position = game.at(4,21)),
+				  	new Bloque(position = game.at(5,21))]
+		bloques.forEach{_bloque => _bloque.color(self.color())}
+	}
 }
 
 class FormaT inherits Forma{
@@ -278,5 +286,13 @@ class FormaT inherits Forma{
 }
 
 class FormaZ inherits Forma{
-	/* Forma Z */
+	override method color() = rojo
+
+	override method crearForma(){
+		bloques = [	new Bloque(position = game.at(4,20)),
+				  	new Bloque(position = game.at(5,20)),
+				  	new Bloque(position = game.at(4,21)),
+				  	new Bloque(position = game.at(3,21))]
+		bloques.forEach{_bloque => _bloque.color(self.color())}
+	}
 }
