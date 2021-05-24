@@ -19,7 +19,7 @@ program TETRIS {
 	
 	
 	//Ejemplo con la creacion de forma O inicial
-	var t1 = new FormaL()
+	var t1 = new FormaT()
 	t1.aparecer()
 	configuracion.configurarTeclasPara(manipuladorDeFormas)
 	manipuladorDeFormas.forma(t1)
@@ -32,7 +32,7 @@ program TETRIS {
 	game.onTick(50, "CLOCK_CONTROL", {
 		//Nuevas formas al estancar la actual
 		if(t1.estaEstancado()){
-			t1 = new FormaL()
+			t1 = new FormaT()
 			manipuladorDeFormas.forma(t1)
 			//Elimino las lineas llenas y bajo la parte de arriba 
 			gestionDelJuego.puntosDelJuego(0)

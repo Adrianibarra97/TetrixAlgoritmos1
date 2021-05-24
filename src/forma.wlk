@@ -31,34 +31,94 @@ class Forma {
 	method bloqueCentral() = bloques.first()
 	
 	/**
-	 *	Return if the Tetromino can rotate to the right or left.
-	 */
-	method puedeCambiarRotacion(_direction) = true /*Programar para cada forma por separado.*/
-	
-	/**
 	 *	Rotate the tetromino to the right or left.
 	 */
 	method rotar(_direction){/*Metodo para rotar la pieza*/
+		if((self.calculaPosRotacion(_direction)).any({pos => not self.hayOtroObjetoEn(pos)})) {
+			return 0
+		}	
+		
 		if(self.puedeRotar(_direction)){
 			_direction.rotar(self)
 			return 0	
 		}
+		
+		var desplazamiento = -1
+		
+		if(_direction.equals(derecha) and bloques.any({bloque => bloque.position().x() <= 0})) {
+			desplazamiento = 1
+		}
+		
+		if(_direction.equals(derecha) and bloques.all({bloque => bloque.position().x() == 1})) {
+			desplazamiento = 1
+		}
+		
+		if(_direction.equals(izquierda) and bloques.any({bloque => bloque.position().x() >= 8})) {
+			desplazamiento = 1
+		}
+		
 		bloques.forEach({
-			bloque => _direction.mover(bloque, -1)
+			bloque => _direction.mover(bloque, desplazamiento)
 		})
+		
 		return self.rotar(_direction)
 	}
+	
+	/**
+	 *	Return a list with the positions of the blocks .
+	 */
+	 
+	 method calculaPosRotacion(_direction) {
+	 	const posiciones = []
+	 	const posPrimerBloque = self.bloqueCentral().position()
+	 	
+	 	if(_direction == izquierda) {
+	 		bloques.forEach({ bloque =>
+				var posBloque = bloque.position()
+				var desplazamiento = game.at((posBloque.x() - posPrimerBloque.x()), (posBloque.y() - posPrimerBloque.y()))
+				var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))	
+				posiciones.add(posFinal)
+			})
+	 	}else {
+	 		bloques.forEach({ bloque =>
+				var posBloque = bloque.position()
+				var desplazamiento = game.at((posPrimerBloque.x() - posBloque.x()), (posPrimerBloque.y() - posBloque.y()))
+				var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))	
+				posiciones.add(posFinal)
+			})
+	 	}
+	 	
+	 	return posiciones
+	 }
+	 
+	 /**
+	 *	Return if the Tetromino can rotate to axis x.
+	 */
+	 
+	 method puedeRotarX(_direction) {
+	 	return (self.calculaPosRotacion(_direction)).all({pos => pos.x().between(0, 9)})
+	 }
+	 
+	 /**
+	 *	Return if the Tetromino can rotate to axis y.
+	 */
+	 
+	 method puedeRotarY(_direction) {
+	 	if((self.calculaPosRotacion(_direction)).all({pos => pos.y() >= 0})){
+	 		return true
+	 	}
+	 	
+	 	arriba.mover(self)
+	 	return self.puedeRotarY(_direction)
+	 }
+	
 	/**
 	 *	Return if the Tetromino can rotate to the right or left.
 	 */
 	
 	method puedeRotar(_direction) {
-		return self.puedeCambiarRotacion(_direction)// and 
-			   //not self.colisionaConPared(_direction) and 
-			   //not self.colisionaConPiso()
+		return self.puedeRotarX(_direction) and self.puedeRotarY(_direction)
 	}
-	
-	
 	
 	/**
 	 *	Move to the right the tetromino if it can.
@@ -152,7 +212,6 @@ class Forma {
 
 //------Different Tetrominos---------------
 class FormaI inherits Forma{
-	/* Forma I */
 	override method color() = celeste
 	
 	override method crearForma(){
@@ -162,11 +221,8 @@ class FormaI inherits Forma{
 				  	new Bloque(position = game.at(6,20))]
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 	}
-	
-	override method puedeCambiarRotacion(_direction) {
-		return true
-	}
 }
+
 class FormaJ inherits Forma{
 	override method crearForma(){
 		bloques = [	new Bloque(position = game.at(4,20)),
@@ -176,6 +232,7 @@ class FormaJ inherits Forma{
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 	}
 }
+
 class FormaL inherits Forma{
 	override method color() = naranja
 	
@@ -204,9 +261,11 @@ class FormaO inherits Forma{
 	}
 }
 
-class FormaS inherits Forma{/* Forma S */}
+class FormaS inherits Forma{
+	/* Forma S */
+}
+
 class FormaT inherits Forma{
-	/* Forma T */
 	override method color() = violeta
 	
 	override method crearForma(){
@@ -216,23 +275,8 @@ class FormaT inherits Forma{
 				  	new Bloque(position = game.at(4,21))]
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 	}
-	
-	/*override method puedeCambiarRotacion(_direction) {
-			if(_direction == izquierda){
-				var posB1 = self.posicionActual()
-				var posB3 = bloques.get(2).position()
-				var desplazamiento = game.at((posB3.x() - posB1.x()), (posB3.y() - posB1.y()))
-				var posFinal = game.at((-desplazamiento.y() + posB1.x()), (desplazamiento.x()  + posB1.y()))
-				
-				return self.hayOtroObjetoEn(posFinal)	
-			}
-			
-			var posB1 = self.posicionActual()
-			var posB2 = bloques.get(1).position()
-			var desplazamiento = game.at((posB1.x() - posB2.x()), (posB1.y() - posB2.y()))
-			var posFinal = game.at((-desplazamiento.y() + posB1.x()), (desplazamiento.x()  + posB1.y()))
-				
-			return self.hayOtroObjetoEn(posFinal)
-	}*/
 }
-class FormaZ inherits Forma{/* Forma Z */}
+
+class FormaZ inherits Forma{
+	/* Forma Z */
+}
