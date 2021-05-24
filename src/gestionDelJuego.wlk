@@ -22,41 +22,22 @@ object gestionDelJuego {
 	 	}).flatten()
 	}
 	 
-	method limpiarPantalla() {
-		new Range(start = 0, end = 22, step = 1).forEach({
-	 		ejeY => self.BorrarLinea(self.bloquesEnLinea(ejeY))
-	 	})
-	}
-	/*
-     
-	method bajarObjetosAPartir(valor_inicial) {
-		new Range(start = valor_inicial, end = 22, step = 1).forEach({
-	 		ejeY => (self.bloquesEnLinea(ejeY)).forEach({
-	 			bloque => 
-	 			if(not ((manipuladorDeFormas.forma()).bloques()).contains(bloque)) {
-	 				bloque.bajar()
-	 			}
-	 		})
-	 	})
+	method limpiarPantalla(ejeY) {
+		const linea = self.bloquesEnLinea(ejeY)
+		if(linea.size() == 0) {
+			return 0
+		}
+		self.BorrarLinea(linea)
+		return self.limpiarPantalla(ejeY + 1)
 	}
 	
-	*/
-	 
-	// Version recursiva:
 	method bajarObjetosAPartir(valor_inicial) {
-		var linea = self.bloquesEnLinea(valor_inicial)
-		
-		if(linea.size() == 0)
-			 return 0
-		
-		
-		linea.forEach({bloque => 
-	 		//if(not manipuladorDeFormas.forma().bloques().contains(bloque)) {
-	 			bloque.bajar()
-	 		//}
-	 	})
+		const linea = self.bloquesEnLinea(valor_inicial)
+		if(linea.size() == 0) {
+			return 0
+		}
+		linea.forEach({bloque => bloque.bajar()})
 	 	return self.bajarObjetosAPartir(valor_inicial + 1)
-	 	
 	}
  
 	 
@@ -69,14 +50,13 @@ object gestionDelJuego {
 	} 
 	 
 	method resetear() {
-	 	game.schedule(1000, {
-	 	   	self.limpiarPantalla()
-	 		game.addVisual(gameOver)
-	 	}) 
-	 	
-	 	game.schedule(5000, {
-	 		self.limpiarPantalla()
-	 	})
+		self.limpiarPantalla(0) 
+		puntos = 0
+		/*
+		game.addVisual(gameOver)
+		puntos = 0
+		self.limpiarPantalla(0)
+		*/
 	}
 	 
 	method BorrarLinea(linea) {
@@ -89,25 +69,10 @@ object gestionDelJuego {
 		return (self.bloquesEnLinea(ejeY)).size() >= 10
 	}
 	 
-	/*
-	method puntosDelJuego() {
-		var puntos = 0
-	 	new Range(start = 0, end = 22, step = 1).forEach({
-	 		ejeY => 
-	 		if(self.verificarLineasCompletas(ejeY)){
-	 			self.BorrarLinea(self.bloquesEnLinea(ejeY))
-	 			self.bajarObjetosAPartir(ejeY)
-	 			puntos += 1000
-	 		}
-	 	})
-	 	return puntos
-	}
-	*/
-	  
-	// Version recursiva: 
-	 
 	method puntosDelJuego(ejeY) {
-		if((self.bloquesEnLinea(ejeY)).size() == 0) return puntos
+		if((self.bloquesEnLinea(ejeY)).size() == 0) {
+			return puntos
+		}
 		
 	 	if(self.verificarLineasCompletas(ejeY)){
 	 		self.BorrarLinea(self.bloquesEnLinea(ejeY))

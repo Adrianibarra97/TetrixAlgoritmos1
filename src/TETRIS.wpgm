@@ -17,6 +17,7 @@ program TETRIS {
 	
 	// PRUEBA TEMPORAL!!!!
 	
+	var puntos = 0
 	
 	//Ejemplo con la creacion de forma O inicial
 	var t1 = new FormaT()
@@ -35,9 +36,10 @@ program TETRIS {
 			t1 = new FormaT()
 			manipuladorDeFormas.forma(t1)
 			//Elimino las lineas llenas y bajo la parte de arriba 
-			gestionDelJuego.puntosDelJuego(0)
+			puntos = gestionDelJuego.puntosDelJuego(0)
 			t1.aparecer()
 		}
+		
 		if(gestionDelJuego.yaPerdio()){
 			gestionDelJuego.resetear()
 		}
