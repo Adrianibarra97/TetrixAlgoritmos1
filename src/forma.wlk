@@ -226,9 +226,9 @@ class FormaI inherits Forma{
 class FormaJ inherits Forma{
 	override method crearForma(){
 		bloques = [	new Bloque(position = game.at(4,20)),
+				  	new Bloque(position = game.at(5,20)),
 				  	new Bloque(position = game.at(3,20)),
-				  	new Bloque(position = game.at(2,20)),
-				  	new Bloque(position = game.at(2,21))]
+				  	new Bloque(position = game.at(3,21))]
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 	}
 }
@@ -238,9 +238,9 @@ class FormaL inherits Forma{
 	
 	override method crearForma(){
 		bloques = [	new Bloque(position = game.at(4,20)),
-				  	new Bloque(position = game.at(4,21)),
-				  	new Bloque(position = game.at(3,20)),
-				  	new Bloque(position = game.at(2,20))]
+				  	new Bloque(position = game.at(5,21)),
+				  	new Bloque(position = game.at(5,20)),
+				  	new Bloque(position = game.at(3,20))]
 		bloques.forEach{_bloque => _bloque.color(self.color())}
 	}
 }
