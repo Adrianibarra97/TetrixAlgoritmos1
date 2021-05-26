@@ -8,34 +8,35 @@ object derecha{
 	const property alLado = 1
 	method mover(_objeto){ _objeto.position(_objeto.position().right(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().right(_cant)) }
-	method rotar(_objeto){
-		(_objeto.bloques()).forEach({
-			Elemento =>
-			var posPrimerBloque = _objeto.bloqueCentral().position()
-			var posBloque = Elemento.position()
-			
-			var desplazamiento = game.at((posPrimerBloque.x() - posBloque.x()), (posPrimerBloque.y() - posBloque.y()))
-			var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))
-			Elemento.position(posFinal)	
-			})
 	
+	method proximaPosRotacion(_posBloque, _posPrimerBloque) {
+		const desplazamiento = game.at((_posPrimerBloque.x() - _posBloque.x()), (_posPrimerBloque.y() - _posBloque.y()))
+		return game.at((-desplazamiento.y() + _posPrimerBloque.x()), (desplazamiento.x()  + _posPrimerBloque.y()))	
+	}
+	
+	method rotar(_objeto){ 
+		(_objeto.bloques()).forEach({bloque =>
+			const nuevaPos = self.proximaPosRotacion(bloque.position(), _objeto.bloqueCentral().position()) 
+			bloque.position(nuevaPos)
+		})
 	}
 }
+
 object izquierda{
 	const property alLado = -1
 	method mover(_objeto){ _objeto.position(_objeto.position().left(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().left(_cant)) }
-	method rotar(_objeto){ 
-		(_objeto.bloques()).forEach({
-			Elemento =>
-			var posPrimerBloque = _objeto.bloqueCentral().position()
-			var posBloque = Elemento.position()
-			
-			var desplazamiento = game.at((posBloque.x() - posPrimerBloque.x()), (posBloque.y() - posPrimerBloque.y()))
-			var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))
-			Elemento.position(posFinal)	
-			})
 	
+	method proximaPosRotacion(_posBloque, _posPrimerBloque) {
+		const desplazamiento = game.at((_posBloque.x() - _posPrimerBloque.x()), (_posBloque.y() - _posPrimerBloque.y()))
+		return game.at((-desplazamiento.y() + _posPrimerBloque.x()), (desplazamiento.x()  + _posPrimerBloque.y()))	
+	}
+	
+	method rotar(_objeto){ 
+		(_objeto.bloques()).forEach({bloque =>
+			const nuevaPos = self.proximaPosRotacion(bloque.position(), _objeto.bloqueCentral().position()) 
+			bloque.position(nuevaPos)
+		})
 	}
 }
 
@@ -43,6 +44,7 @@ object arriba{
 	method mover(_objeto){ _objeto.position(_objeto.position().up(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().up(_cant)) }
 }
+
 object abajo{
 	method mover(_objeto){ _objeto.position(_objeto.position().down(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().down(_cant)) }
@@ -93,5 +95,4 @@ object configuracion{
 				music.play()
 		})
 	}
-	
 }

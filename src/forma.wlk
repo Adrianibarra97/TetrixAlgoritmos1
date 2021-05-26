@@ -69,26 +69,9 @@ class Forma {
 	 */
 	 
 	 method calculaPosRotacion(_direction) {
-	 	const posiciones = []
-	 	const posPrimerBloque = self.bloqueCentral().position()
-	 	
-	 	if(_direction == izquierda) {
-	 		bloques.forEach({ bloque =>
-				var posBloque = bloque.position()
-				var desplazamiento = game.at((posBloque.x() - posPrimerBloque.x()), (posBloque.y() - posPrimerBloque.y()))
-				var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))	
-				posiciones.add(posFinal)
-			})
-	 	}else {
-	 		bloques.forEach({ bloque =>
-				var posBloque = bloque.position()
-				var desplazamiento = game.at((posPrimerBloque.x() - posBloque.x()), (posPrimerBloque.y() - posBloque.y()))
-				var posFinal = game.at((-desplazamiento.y() + posPrimerBloque.x()), (desplazamiento.x()  + posPrimerBloque.y()))	
-				posiciones.add(posFinal)
-			})
-	 	}
-	 	
-	 	return posiciones
+	 	return bloques.map({
+	 		bloque => _direction.proximaPosRotacion(bloque.position(), self.bloqueCentral().position())
+	 	})
 	 }
 	 
 	 /**

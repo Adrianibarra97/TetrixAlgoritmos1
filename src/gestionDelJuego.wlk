@@ -44,11 +44,9 @@ object gestionDelJuego {
 	// Funciones Necesarias: 
 	 
 	method yaPerdio(){
-		return new Range(start = 15, end = 19, step = 1).all({
-	 		ejeY => self.bloquesEnLinea(ejeY).size() > 0
-	 	}) 
+		return self.bloquesEnLinea(21).size() > 2
 	} 
-	 
+	
 	method resetear() {
 		self.limpiarPantalla(0) 
 		puntos = 0
