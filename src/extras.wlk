@@ -1,4 +1,5 @@
 import wollok.game.*
+import gestionDelJuego.*
 
 /**
  * Direction Objects.
@@ -71,6 +72,7 @@ object configuracion{
 		keyboard.left().onPressDo	{_manipulador.moverIzquierda()}		//Left Arrow
 		keyboard.space().onPressDo	{_manipulador.caer()			}		//Space
 		keyboard.z().onPressDo		{_manipulador.rotar(izquierda)}		//z
+		keyboard.r().onPressDo		{gestionDelJuego.resetear()}
 	}
 	
 	method desConfigurarTeclasPara(_tetromino) { /* Configuracion de las teclas */

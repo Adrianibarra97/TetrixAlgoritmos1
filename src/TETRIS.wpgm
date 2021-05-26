@@ -5,6 +5,7 @@ import forma.*
 import extras.*
 import manipuladorDeFormas.*
 import gestionDelJuego.*
+import randomizador.*
 
 program TETRIS {
 	//----Configuracion del juego TETRIS-----------
@@ -20,7 +21,7 @@ program TETRIS {
 	var puntos = 0
 	
 	//Ejemplo con la creacion de forma O inicial
-	var t1 = new FormaT()
+	var t1 = randomizador.formaRandom()
 	t1.aparecer()
 	configuracion.configurarTeclasPara(manipuladorDeFormas)
 	manipuladorDeFormas.forma(t1)
@@ -33,7 +34,7 @@ program TETRIS {
 	game.onTick(50, "CLOCK_CONTROL", {
 		//Nuevas formas al estancar la actual
 		if(t1.estaEstancado()){
-			t1 = new FormaT()
+			t1 = randomizador.formaRandom()
 			manipuladorDeFormas.forma(t1)
 			//Elimino las lineas llenas y bajo la parte de arriba 
 			puntos = gestionDelJuego.puntosDelJuego(0)
