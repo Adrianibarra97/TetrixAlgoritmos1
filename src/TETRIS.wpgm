@@ -39,7 +39,9 @@ program TETRIS {
 			//Elimino las lineas llenas y bajo la parte de arriba 
 			puntos = gestionDelJuego.puntosDelJuego(0)
 			t1.aparecer()
+			console.println(puntos)
 		}
+		
 		
 		if(gestionDelJuego.yaPerdio()){
 			gestionDelJuego.resetear()

@@ -9,5 +9,5 @@ object randomizador {
 					 {new FormaO()},
 					 {new FormaT()} ]
 	
-	method formaRandom() = return formas.get(0.randomUpTo(7).roundUp() - 1).apply()
+	method formaRandom() = formas.get(0.randomUpTo(7).roundUp() - 1).apply()
 }

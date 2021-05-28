@@ -34,35 +34,27 @@ class Forma {
 	 *	Rotate the tetromino to the right or left.
 	 */
 	method rotar(_direction){/*Metodo para rotar la pieza*/
-		if((self.calculaPosRotacion(_direction)).any({pos => not self.hayOtroObjetoEn(pos)})) {
+		if((self.calculaPosRotacion(_direction)).any({pos => not self.hayOtroObjetoEn(pos)}))
 			return 0
-		}	
 		
 		if(self.puedeRotar(_direction)){
 			_direction.rotar(self)
-			return 0	
+			return 0
 		}
 		
-		var desplazamiento = -1
-		
-		if(_direction.equals(derecha) and bloques.any({bloque => bloque.position().x() <= 0})) {
-			desplazamiento = 1
-		}
-		
-		if(_direction.equals(derecha) and bloques.all({bloque => bloque.position().x() == 1})) {
-			desplazamiento = 1
-		}
-		
-		if(_direction.equals(izquierda) and bloques.any({bloque => bloque.position().x() >= 8})) {
-			desplazamiento = 1
-		}
-		
-		bloques.forEach({
-			bloque => _direction.mover(bloque, desplazamiento)
-		})
+		bloques.forEach{bloque => _direction.mover(bloque, self.calcularDesplazamientoEnRotacion(_direction))}
 		
 		return self.rotar(_direction)
 	}
+	
+	method calcularDesplazamientoEnRotacion(_direction)=
+		if(self.verificarDesplazamientoEnRotacion(_direction)) 1
+		else -1
+	
+	method verificarDesplazamientoEnRotacion(_direction) =
+		_direction.equals(derecha) and bloques.any({bloque => bloque.position().x() <= 0})   or
+		_direction.equals(derecha) and bloques.all({bloque => bloque.position().x() == 1})   or
+		_direction.equals(izquierda) and bloques.any({bloque => bloque.position().x() >= 8})
 	
 	/**
 	 *	Return a list with the positions of the blocks .
@@ -91,7 +83,7 @@ class Forma {
 	 		return true
 	 	}
 	 	
-	 	arriba.mover(self)
+	 	bloques.forEach{_bloque => arriba.mover(_bloque)}
 	 	return self.puedeRotarY(_direction)
 	 }
 	

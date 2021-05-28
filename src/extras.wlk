@@ -2,7 +2,7 @@ import wollok.game.*
 import gestionDelJuego.*
 
 /**
- * Direction Objects.
+ * Rigth Direction Object.
  */
 object derecha{
 	const property alLado = 1
@@ -22,6 +22,9 @@ object derecha{
 	}
 }
 
+/**
+ * Left Direction Object.
+ */
 object izquierda{
 	const property alLado = -1
 	method mover(_objeto){ _objeto.position(_objeto.position().left(1)) }
@@ -40,11 +43,17 @@ object izquierda{
 	}
 }
 
+/**
+ * Up Direction Object.
+ */
 object arriba{
 	method mover(_objeto){ _objeto.position(_objeto.position().up(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().up(_cant)) }
 }
 
+/**
+ * Down Direction Object.
+ */
 object abajo{
 	method mover(_objeto){ _objeto.position(_objeto.position().down(1)) }
 	method mover(_objeto,_cant){ _objeto.position(_objeto.position().down(_cant)) }
@@ -55,18 +64,8 @@ object abajo{
  */
 object configuracion{
 	/**
-	 *	Configure the keys for focus the block.
+	 *	Setup the keys for focus the block.
 	 */
-	/*
-	method configurarTeclasPara(_tetromino) { // Configuracion de las teclas 
-		keyboard.up().onPressDo		{_tetromino.rotar(derecha)	}		//Up Arrow
-		keyboard.down().onPressDo	{_tetromino.bajar()			}		//Down Arrow
-		keyboard.right().onPressDo	{_tetromino.moverDerecha()	}		//Right Arrow
-		keyboard.left().onPressDo	{_tetromino.moverIzquierda()}		//Left Arrow
-		keyboard.space().onPressDo	{_tetromino.caer()			}		//Space
-		keyboard.z().onPressDo		{_tetromino.rotar(izquierda)}		//z
-	}*/
-	
 	method configurarTeclasPara(_manipulador) { // Configuracion de las teclas 
 		keyboard.up().onPressDo		{_manipulador.rotar(derecha)	}		//Up Arrow
 		keyboard.down().onPressDo	{_manipulador.bajar()			}		//Down Arrow
@@ -77,15 +76,9 @@ object configuracion{
 		keyboard.r().onPressDo		{gestionDelJuego.resetear()}
 	}
 	
-	method desConfigurarTeclasPara(_tetromino) { /* Configuracion de las teclas */
-		keyboard.up().onPressDo{}		//Up Arrow
-		keyboard.down().onPressDo{}		//Down Arrow
-		keyboard.right().onPressDo{}	//Right Arrow
-		keyboard.left().onPressDo{}		//Left Arrow
-		keyboard.space().onPressDo{}	//Space
-		keyboard.z().onPressDo{}		//z
-	}
-	
+	/**
+	 *	Setup the Tetris music.
+	 */
 	method configurarMusica(_music){
 		const music = game.sound(_music)
 		music.shouldLoop(true)
