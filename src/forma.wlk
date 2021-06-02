@@ -42,7 +42,8 @@ class Forma {
 			return 0
 		}
 		
-		bloques.forEach{bloque => _direction.mover(bloque, self.calcularDesplazamientoEnRotacion(_direction))}
+		const desplazamiento = self.calcularDesplazamientoEnRotacion(_direction)
+		bloques.forEach{ _bloque => _bloque.mover(_direction, desplazamiento) }
 		
 		return self.rotar(_direction)
 	}
@@ -70,19 +71,16 @@ class Forma {
 	 *	Return if the Tetromino can rotate to axis x.
 	 */
 	 
-	 method puedeRotarX(_direction) {
-	 	return (self.calculaPosRotacion(_direction)).all({pos => pos.x().between(0, 9)})
-	 }
+	 method puedeRotarX(_direction) =
+	 			self.calculaPosRotacion(_direction).all{pos => pos.x().between(0, 9)}
 	 
 	 /**
 	 *	Return if the Tetromino can rotate to axis y.
 	 */
 	 
 	 method puedeRotarY(_direction) {
-	 	if((self.calculaPosRotacion(_direction)).all({pos => pos.y() >= 0})){
+	 	if((self.calculaPosRotacion(_direction)).all({pos => pos.y() >= 0}))
 	 		return true
-	 	}
-	 	
 	 	bloques.forEach{_bloque => arriba.mover(_bloque)}
 	 	return self.puedeRotarY(_direction)
 	 }
@@ -227,6 +225,7 @@ class FormaL inherits Forma{
 class FormaO inherits Forma{
 	override method color() = amarillo
 	
+	override method rotar(_direction) = false 
 	override method crearForma(){
 		bloques = [	new Bloque(position = game.at(4,20)),
 				  	new Bloque(position = game.at(5,20)),
