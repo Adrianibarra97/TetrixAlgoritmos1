@@ -11,13 +11,12 @@ class Forma {
 	/**
 	 *	Attributtes for manipulating the shape or Tetromino.
 	 */
-	var property bloques		//El primer bloque en la lista sera el central de la figura
-	var estancado = false
+	var property bloques		//The first Tetromino in the list should be the central block.
+	var estancado = false		//block stagnant flag
 	
 	/**
 	 *	Forma class Constructor. 
 	 */
-	 
 	constructor(){}
 	
 	/**
@@ -48,10 +47,16 @@ class Forma {
 		return self.rotar(_direction)
 	}
 	
-	method calcularDesplazamientoEnRotacion(_direction)=
+	/**
+	 *	Determines the direction of displacement of the Tetromino if can't rotate.
+	 */
+	method calcularDesplazamientoEnRotacion(_direction) =
 		if(self.verificarDesplazamientoEnRotacion(_direction)) 1
 		else -1
 	
+	/**
+	 *	Check if the tetromino can rotate.
+	 */
 	method verificarDesplazamientoEnRotacion(_direction) =
 		_direction.equals(derecha) and bloques.any({bloque => bloque.position().x() <= 0})   or
 		_direction.equals(derecha) and bloques.all({bloque => bloque.position().x() == 1})   or
@@ -60,7 +65,6 @@ class Forma {
 	/**
 	 *	Return a list with the positions of the blocks .
 	 */
-	 
 	 method calculaPosRotacion(_direction) {
 	 	return bloques.map({
 	 		bloque => _direction.proximaPosRotacion(bloque.position(), self.bloqueCentral().position())
@@ -70,14 +74,12 @@ class Forma {
 	 /**
 	 *	Return if the Tetromino can rotate to axis x.
 	 */
-	 
 	 method puedeRotarX(_direction) =
 	 			self.calculaPosRotacion(_direction).all{pos => pos.x().between(0, 9)}
 	 
 	 /**
 	 *	Return if the Tetromino can rotate to axis y.
 	 */
-	 
 	 method puedeRotarY(_direction) {
 	 	if((self.calculaPosRotacion(_direction)).all({pos => pos.y() >= 0}))
 	 		return true
@@ -88,7 +90,6 @@ class Forma {
 	/**
 	 *	Return if the Tetromino can rotate to the right or left.
 	 */
-	
 	method puedeRotar(_direction) {
 		return self.puedeRotarX(_direction) and self.puedeRotarY(_direction)
 	}
@@ -121,7 +122,7 @@ class Forma {
 	/**
 	 *	Drop the Tetromino until it collides with the ground.
 	 */
-	method caer(){/*Metodo para dejar caer la pieza del todo hasta colisionar (Todos los bloques)*/
+	method caer(){
 		new Range(start = 0, end = 22, step = 1).forEach{_r => 
 			if(self.colisionaConPiso()){
 				self.estancar()	
@@ -180,10 +181,19 @@ class Forma {
 		bloques.forEach{_bloque => game.addVisual(_bloque)}
 	}
 	
-	method crearForma(){}
+	/**
+	 *	Method to create the Tetrominos by positioning each block in its initial position.
+	 */
+	method crearForma(){} //It is not an abstract method cause we use Forma class for tests.
 }
 
-//------Different Tetrominos---------------
+//---------------------------------------------------------------------------------------------
+//------Different Tetrominos-------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+/**
+ * FormaI Class.
+ * Stick Tetromino, light blue.
+ */
 class FormaI inherits Forma{
 	override method color() = celeste
 	
@@ -196,6 +206,10 @@ class FormaI inherits Forma{
 	}
 }
 
+/**
+ * FormaJ Class.
+ * J character Tetromino, blue.
+ */
 class FormaJ inherits Forma{
 	override method crearForma(){
 		bloques = [	new Bloque(position = game.at(4,20)),
@@ -206,6 +220,10 @@ class FormaJ inherits Forma{
 	}
 }
 
+/**
+ * FormaL Class.
+ * L character Tetromino, orange.
+ */
 class FormaL inherits Forma{
 	override method color() = naranja
 	
@@ -220,7 +238,7 @@ class FormaL inherits Forma{
 
 /**
  * FormaO Class.
- * square Tetromino, yellow.
+ * Square Tetromino, yellow.
  */
 class FormaO inherits Forma{
 	override method color() = amarillo
@@ -235,6 +253,10 @@ class FormaO inherits Forma{
 	}
 }
 
+/**
+ * FormaS Class.
+ * S character Tetromino, green.
+ */
 class FormaS inherits Forma{
 	override method color() = verde
 
@@ -247,6 +269,10 @@ class FormaS inherits Forma{
 	}
 }
 
+/**
+ * FormaT Class.
+ * T character Tetromino, purple.
+ */
 class FormaT inherits Forma{
 	override method color() = violeta
 	
@@ -259,6 +285,10 @@ class FormaT inherits Forma{
 	}
 }
 
+/**
+ * FormaZ Class.
+ * Z character Tetromino, red.
+ */
 class FormaZ inherits Forma{
 	override method color() = rojo
 
