@@ -82,7 +82,7 @@ object configuracion{
 	method configurarMusica(_music){
 		const music = game.sound(_music)
 		music.shouldLoop(true)
-		music.volume(0.2)
+		music.volume(0.05)
 		game.onTick(100, "MUSICA", {
 			if(not music.played())
 				music.play()

@@ -8,12 +8,6 @@ import manipuladorDeFormas.*
 object gestionDelJuego {
 	var puntos = 0
 	
-	/** Hacer metodos:
-		* resetear => borrar todos los bloques game.clear()
-		* verificar si perdio => true o false 
-		* verificar lineas completas
-		* Borrar lineas completas
-	*/
 	// Funciones Auxiliares:
 	 
 	method bloquesEnLinea(ejeY){
@@ -50,11 +44,6 @@ object gestionDelJuego {
 	method resetear() {
 		self.limpiarPantalla(0) 
 		puntos = 0
-		/*
-		game.addVisual(gameOver)
-		puntos = 0
-		self.limpiarPantalla(0)
-		*/
 	}
 	 
 	method BorrarLinea(linea) {
