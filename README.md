@@ -73,6 +73,11 @@ Z | Rotar hacia la izquierda
 Flecha Abajo | Caer suavemente
 Espacio | Dejar caer
 
+## Diagrama de organización
+> Este diagrama no es un diagrama hecho con el formato oficial, sino que simplemente es un simple diagrama con el que el grupo se organizó para programar el juego completo.
+El diagrama se confeccionó al inicio del proyecto y nunca se volvió a cambiar ya que solamente era para organizarse y no para definir el proyecto al final.
+<p align="center"> <img  src="/img/diagrama.png"/> </p>
+
 ## Division y organización de Tareas
 Para la división y organización de tareas utilizamos un software en una página web llamada [*Jira*](https://tetris.fandom.com/wiki/Tetromino), en la cuál manipulamos una hoja de ruta y backlogs de la siguiente manera:
 
@@ -82,5 +87,3 @@ Para la división y organización de tareas utilizamos un software en una págin
 ## Información sobre el Grupong
 El grupong es un grupo de trabajo que surgió en el año 2020 en la Universidad de San Martin mientras la mayoría de sus integrantes se encontraban cursando la materia "Sistema de Procesamiento de Datos" (SPD), en la cuál se aprendía lo básico de programación en assembler de 8086. Sin embargo el Grupong subió la apuesta y llevó los temas de la materia a otro nivel, intentado programar un Pong en este lenguaje de bajo nivel (Idea del docente y referente del equipo, Fabio Bruschetti). Lo que finalmente se logró con éxito, sacando 5 versiones diferentes del Pong hechas con las mismas librerías que se programaron entre todos los integrantes, para lo que tuvieron que aprender por su cuenta conceptos un poco más avanzados como el uso de estructuras de datos en lenguaje ensamblador.<br/>
 En sus inicios, los integrantes eran 5 personas de las cuales 4 se encuentran actualmente trabajando en proyectos del estilo en la actualidad, más la grata adición de un nuevo participante al mismo. Hoy en día **Nicolás Villamonte**, **Adrián Ibarra**, **Ezequiel Iozzia**, **Ezequiel Oyola** y **Mateo Pastorini** son los integrantes del grupo, los cuales decidieron pasar del programado de un Pong en Assembler a principios del 2020 al programado de un Tetris en Wollok a mitades del 2021.
-
-_ACA DEBERIAMOS AGREGAR LAS FOTOS RETRATO DE CADA UNO DE LOS PARTICIPANTES._
