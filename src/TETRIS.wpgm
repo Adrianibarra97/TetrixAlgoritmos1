@@ -16,8 +16,6 @@ program TETRIS {
 	//----Configuracion de la musica---------------
 	configuracion.configurarMusica("tetris_theme.mp3")
 	
-	// PRUEBA TEMPORAL!!!!
-	
 	var puntos = 0
 	
 	//Ejemplo con la creacion de forma O inicial
@@ -37,11 +35,11 @@ program TETRIS {
 			t1 = randomizador.proximaForma()
 			manipuladorDeFormas.forma(t1)
 			//Elimino las lineas llenas y bajo la parte de arriba 
-			puntos = gestionDelJuego.puntosDelJuego(0)
+			gestionDelJuego.borrarLineasCompletas(0)
+			puntos = gestionDelJuego.puntos()
 			t1.aparecer()
 			console.println(puntos)
 		}
-		
 		
 		if(gestionDelJuego.yaPerdio()){
 			gestionDelJuego.resetear()

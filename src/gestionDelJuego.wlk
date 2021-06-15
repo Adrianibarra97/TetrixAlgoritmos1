@@ -5,17 +5,31 @@ import forma.*
 import extras.*
 import manipuladorDeFormas.*
 
+/**
+ * gestionDelJuego Object.
+ */
 object gestionDelJuego {
 	var puntos = 0
 	
 	// Funciones Auxiliares:
-	 
+	
+	/**
+	 *	puntos getter. 
+	 */
+	method puntos() = puntos
+	
+	/**
+	 *	Return a list of blocks in a line. 
+	 */
 	method bloquesEnLinea(ejeY){
 		return new Range(start = 0, end = 9, step = 1).map({
 	 		ejeX => game.getObjectsIn(game.at(ejeX,ejeY))
 	 	}).flatten()
 	}
-	 
+	
+	/**
+	 *	Clear the screen removing all the blocks. 
+	 */
 	method limpiarPantalla(ejeY) {
 		const linea = self.bloquesEnLinea(ejeY)
 		if(linea.size() == 0) {
@@ -25,40 +39,57 @@ object gestionDelJuego {
 		return self.limpiarPantalla(ejeY + 1)
 	}
 	
-	method bajarObjetosAPartir(valor_inicial) {
-		const linea = self.bloquesEnLinea(valor_inicial)
-		if(linea.size() == 0) {
+	/**
+	 *	Move down all blocks from a specific line.   
+	 */
+	method bajarObjetosAPartir(ejeY) {
+		if(self.bloquesEnLinea(ejeY).size() == 0) {
 			return 0
 		}
-		linea.forEach({bloque => bloque.bajar()})
-	 	return self.bajarObjetosAPartir(valor_inicial + 1)
+		self.bloquesEnLinea(ejeY).forEach({bloque => bloque.bajar()})
+	 	return self.bajarObjetosAPartir(ejeY + 1)
 	}
  
 	 
 	// Funciones Necesarias: 
-	 
+	
+	/**
+	 *	Verify if the player lost.   
+	 */
 	method yaPerdio(){
 		return self.bloquesEnLinea(21).size() > 2
 	} 
 	
+	/**
+	 *	Reset the game.   
+	 */
 	method resetear() {
 		self.limpiarPantalla(0) 
 		puntos = 0
 	}
-	 
+	
+	/**
+	 *	Delete a line.   
+	 */
 	method BorrarLinea(linea) {
 		linea.forEach({
 	 		elemento => game.removeVisual(elemento)
 	 	})
 	}
-	 
+	
+	/**
+	 *	Verify if the line is complete.   
+	 */
 	method verificarLineasCompletas(ejeY) {
 		return (self.bloquesEnLinea(ejeY)).size() >= 10
 	}
-	 
-	method puntosDelJuego(ejeY) {
+	
+	/**
+	 *	Delete all the complete lines and add points.   
+	 */
+	method borrarLineasCompletas(ejeY) {
 		if((self.bloquesEnLinea(ejeY)).size() == 0) {
-			return puntos
+			return null
 		}
 		
 	 	if(self.verificarLineasCompletas(ejeY)){
@@ -68,18 +99,8 @@ object gestionDelJuego {
 	 	}	
 	 	
 	 	if(self.verificarLineasCompletas(ejeY)) {
-	 		return self.puntosDelJuego(ejeY)
+	 		return self.borrarLineasCompletas(ejeY)
 	 	}
-	 	return self.puntosDelJuego(ejeY + 1)
-	}
-}
-
-object gameOver {
-
-    const image = "green_block.png"
-	var property position = game.origin()
-	
-	method image(){
-		return image
+	 	return self.borrarLineasCompletas(ejeY + 1)
 	}
 }
